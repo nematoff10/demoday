@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<html lang="uz" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Yo'ldosh — Shaharlararo logistika platformasi</title>
+  <meta name="description" content="Yuk va yo'lovchi tashishda tekshirilgan haydovchi va mijozni bog'lovchi shaharlararo logistika platformasi." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+  <script>
+    (function () {
+      try {
+        var t = localStorage.getItem("theme");
+        if (!t) t = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+        document.documentElement.setAttribute("data-theme", t);
+      } catch (e) {}
+    })();
+  </script>
+</head>
+<body>
+
+<!-- IKONKALAR -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <symbol id="i-shield" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z"/><path d="M9 12l2 2 4-4"/></symbol>
+    <symbol id="i-chat" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1-4.6A8 8 0 1 1 21 12z"/></symbol>
+    <symbol id="i-star" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round"><path d="M12 3l2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1L3.2 9.5l6.1-.9z"/></symbol>
+    <symbol id="i-pin" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s7-6.2 7-11a7 7 0 1 0-14 0c0 4.8 7 11 7 11z"/><circle cx="12" cy="10" r="2.5"/></symbol>
+    <symbol id="i-repeat" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M17 2l4 4-4 4"/><path d="M3 11V9a3 3 0 0 1 3-3h15"/><path d="M7 22l-4-4 4-4"/><path d="M21 13v2a3 3 0 0 1-3 3H3"/></symbol>
+    <symbol id="i-truck" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2 6h11v10H2z"/><path d="M13 9h4l4 4v3h-8z"/><circle cx="7" cy="18" r="2"/><circle cx="17" cy="18" r="2"/></symbol>
+    <symbol id="i-box" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 8l-9-5-9 5v8l9 5 9-5z"/><path d="M3.3 7.5L12 12.5l8.7-5"/><path d="M12 22v-9.5"/></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></symbol>
+    <symbol id="i-clock" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></symbol>
+    <symbol id="i-wallet" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7a2 2 0 0 1 2-2h13v4"/><path d="M3 7v11a2 2 0 0 0 2 2h15V9H5a2 2 0 0 1-2-2z"/><circle cx="16.5" cy="14.5" r="1"/></symbol>
+    <symbol id="i-users" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20a6.5 6.5 0 0 1 13 0"/><path d="M16 4.5a3.5 3.5 0 0 1 0 7"/><path d="M18 14a6.5 6.5 0 0 1 3.5 6"/></symbol>
+    <symbol id="i-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M13 6l6 6-6 6"/></symbol>
+    <symbol id="i-doc" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M7 3h7l5 5v13H7z"/><path d="M14 3v5h5"/><path d="M10 13h6M10 17h6"/></symbol>
+    <symbol id="i-id" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="9" cy="11" r="2"/><path d="M6.5 16a3 3 0 0 1 5 0M14 10h4M14 14h4"/></symbol>
+    <symbol id="i-camera" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8h3l2-3h6l2 3h3v11H4z"/><circle cx="12" cy="13" r="3.5"/></symbol>
+    <symbol id="i-phone" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2z"/></symbol>
+    <symbol id="i-mail" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></symbol>
+    <symbol id="i-headset" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 14v-2a8 8 0 0 1 16 0v2"/><rect x="3" y="14" width="4" height="6" rx="1.5"/><rect x="17" y="14" width="4" height="6" rx="1.5"/></symbol>
+    <symbol id="i-building" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 21V5l8-2v18"/><path d="M12 9l8 2v10"/><path d="M8 8v.01M8 12v.01M8 16v.01M16 15v.01M16 18v.01"/></symbol>
+    <symbol id="i-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></symbol>
+    <symbol id="i-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></symbol>
+  </defs>
+</svg>
+
+<div class="progress" id="progress"></div>
+
+<!-- NAVBAR -->
+<header class="nav" id="nav">
+  <div class="nav-in">
+    <a href="#/home" class="logo" data-link="home">
+      <span class="logo-mark"><svg class="ico"><use href="#i-truck"/></svg></span>
+      <span class="logo-text">Yo'ldosh</span>
+    </a>
+
+    <nav class="nav-links" id="navLinks" aria-label="Asosiy menyu">
+      <a href="#/home" data-link="home">Bosh sahifa</a>
+      <a href="#/services" data-link="services">Xizmatlar</a>
+      <a href="#/routes" data-link="routes">Yo'nalishlar</a>
+      <a href="#/drivers" data-link="drivers">Haydovchilar</a>
+      <a href="#/about" data-link="about">Biz haqimizda</a>
+    </nav>
+
+    <div class="nav-actions">
+      <button class="icon-btn" id="themeToggle" aria-label="Qorong'i / yorug' rejim">
+        <svg class="ico icon-sun"><use href="#i-sun"/></svg>
+        <svg class="ico icon-moon"><use href="#i-moon"/></svg>
+      </button>
+      <div class="auth-area" id="authArea"></div>
+      <button class="icon-btn burger" id="burger" aria-label="Menyu"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</header>
+
+<main id="app">
+
+  <!-- ================= BOSH SAHIFA ================= -->
+  <section class="page" data-page="home" data-title="Bosh sahifa">
+
+    <div class="hero">
+      <div class="container hero-grid">
+        <div class="hero-copy">
+          <span class="eyebrow reveal">Shaharlararo logistika platformasi</span>
+          <h1 class="reveal">Yukingiz va safaringiz uchun <span class="hl">ishonchli haydovchi</span></h1>
+          <p class="lead reveal">Yo'nalishingizni kiriting, tekshirilgan haydovchilardan taklif oling va reyting asosida tanlang. Shaffof narx, ochiq sharhlar va xavfsiz tashish.</p>
+          <div class="hero-cta reveal">
+            <button class="btn btn-primary btn-lg" data-scroll="booking">Haydovchi topish <svg class="ico"><use href="#i-arrow"/></svg></button>
+            <button class="btn btn-outline btn-lg" data-scroll="story">Qanday ishlaydi</button>
+          </div>
+          <ul class="trust reveal">
+            <li><svg class="ico"><use href="#i-check"/></svg>Hujjatlari tekshirilgan haydovchilar</li>
+            <li><svg class="ico"><use href="#i-check"/></svg>Reyting va ochiq sharhlar</li>
+            <li><svg class="ico"><use href="#i-check"/></svg>Buyurtmani bosqichma-bosqich kuzatish</li>
+          </ul>
+        </div>
+
+        <div class="booking card reveal" id="booking">
+          <div class="seg" id="bookTabs">
+            <button class="seg-btn active" data-type="cargo" type="button"><svg class="ico"><use href="#i-box"/></svg>Yuk</button>
+            <button class="seg-btn" data-type="pax" type="button"><svg class="ico"><use href="#i-users"/></svg>Yo'lovchi</button>
+          </div>
+          <form id="bookForm" class="book-form">
+            <div class="field">
+              <label for="from">Qayerdan</label>
+              <select id="from"></select>
+            </div>
+            <button type="button" class="swap" id="swapBtn" aria-label="Almashtirish"><svg class="ico"><use href="#i-repeat"/></svg></button>
+            <div class="field">
+              <label for="to">Qayerga</label>
+              <select id="to"></select>
+            </div>
+            <div class="field">
+              <label for="date">Sana</label>
+              <input type="date" id="date" />
+            </div>
+            <div class="field">
+              <label for="extra" id="extraLabel">Yuk hajmi</label>
+              <select id="extra"></select>
+            </div>
+            <button class="btn btn-primary btn-lg full" type="submit">Takliflarni ko'rish</button>
+          </form>
+          <div class="results" id="results" aria-live="polite"></div>
+        </div>
+      </div>
+
+      <div class="container stats">
+        <div class="stat reveal"><b data-count="1200" data-suffix="+">0</b><span>faol haydovchi</span></div>
+        <div class="stat reveal" style="--d:.08s"><b data-count="15000" data-suffix="+">0</b><span>bajarilgan buyurtma</span></div>
+        <div class="stat reveal" style="--d:.16s"><b data-count="14" data-suffix="">0</b><span>viloyat qamrovi</span></div>
+        <div class="stat reveal" style="--d:.24s"><b data-count="48" data-suffix="" data-div="10">0</b><span>o'rtacha reyting</span></div>
+      </div>
+    </div>
+
+    <!-- SCROLL HIKOYASI: YUK ORTISH → YO'L → TUSHIRISH -->
+    <section class="story" id="story" aria-label="Yuk yetkazish jarayoni">
+      <div class="stage" id="stage">
+        <div class="sky"></div>
+        <div class="stars"></div>
+        <div class="orb" id="orb"></div>
+
+        <svg class="layer l-cloud" aria-hidden="true"><defs><pattern id="pCloud" width="1100" height="200" patternUnits="userSpaceOnUse"><g fill="var(--cloud)"><ellipse cx="120" cy="70" rx="70" ry="20"/><ellipse cx="170" cy="56" rx="48" ry="20"/><ellipse cx="560" cy="130" rx="90" ry="22"/><ellipse cx="620" cy="112" rx="52" ry="22"/><ellipse cx="900" cy="64" rx="60" ry="17"/><ellipse cx="940" cy="52" rx="36" ry="17"/></g></pattern></defs><rect width="100%" height="100%" fill="url(#pCloud)"/></svg>
+        <svg class="layer l-far" aria-hidden="true"><defs><pattern id="pFar" width="900" height="220" patternUnits="userSpaceOnUse"><path fill="var(--mtn)" d="M0 220V150L90 100L160 140L260 70L350 130L450 90L560 150L660 80L760 130L840 105L900 150V220Z"/></pattern></defs><rect width="100%" height="100%" fill="url(#pFar)"/></svg>
+        <svg class="layer l-mid" aria-hidden="true"><defs><pattern id="pMid" width="700" height="170" patternUnits="userSpaceOnUse"><path fill="var(--mtn2)" d="M0 170V120L80 80L170 118L270 60L380 112L470 78L580 118L700 120V170Z"/></pattern></defs><rect width="100%" height="100%" fill="url(#pMid)"/></svg>
+        <svg class="layer l-tree" aria-hidden="true"><defs><pattern id="pTree" width="420" height="120" patternUnits="userSpaceOnUse"><g fill="var(--tree)"><path d="M30 120L52 58L74 120Z"/><path d="M38 92L52 44L66 92Z"/><path d="M130 120L146 74L162 120Z"/><path d="M220 120L246 52L272 120Z"/><path d="M229 88L246 38L263 88Z"/><path d="M330 120L348 70L366 120Z"/><path d="M372 120L386 86L400 120Z"/></g></pattern></defs><rect width="100%" height="100%" fill="url(#pTree)"/></svg>
+
+        <!-- Dunyo: ombor va mijoz binosi -->
+        <div class="world" id="world">
+          <svg class="b-ware" viewBox="0 0 432 230" aria-hidden="true">
+            <rect x="0" y="50" width="236" height="180" fill="var(--bld)"/>
+            <rect x="-6" y="38" width="248" height="16" rx="3" fill="var(--bld2)"/>
+            <rect x="26" y="68" width="170" height="38" rx="6" fill="var(--sign)"/>
+            <text x="111" y="94" text-anchor="middle" font-size="19" font-weight="800" fill="#fff" letter-spacing="1.5">OMBOR · TOSHKENT</text>
+            <g fill="var(--glass)"><rect x="22" y="120" width="30" height="14" rx="2"/><rect x="66" y="120" width="30" height="14" rx="2"/><rect x="110" y="120" width="30" height="14" rx="2"/><rect x="154" y="120" width="30" height="14" rx="2"/></g>
+            <g fill="var(--bld2)"><rect x="22" y="152" width="74" height="78" rx="3"/><rect x="118" y="152" width="74" height="78" rx="3"/></g>
+            <g stroke="var(--dock)" stroke-width="2"><path d="M22 168h74M22 184h74M22 200h74M22 216h74M118 168h74M118 184h74M118 200h74M118 216h74"/></g>
+            <rect x="236" y="182" width="196" height="48" fill="var(--dock)"/>
+            <rect x="236" y="182" width="196" height="5" fill="var(--bld2)"/>
+            <rect x="424" y="186" width="8" height="26" rx="2" fill="var(--truck-frame)"/>
+          </svg>
+
+          <svg class="b-dest" viewBox="0 0 520 230" aria-hidden="true">
+            <rect x="0" y="182" width="224" height="48" fill="var(--dock)"/>
+            <rect x="0" y="182" width="224" height="5" fill="var(--bld2)"/>
+            <rect x="224" y="40" width="296" height="190" fill="var(--bld)"/>
+            <rect x="218" y="28" width="308" height="16" rx="3" fill="var(--bld2)"/>
+            <rect x="250" y="58" width="190" height="40" rx="6" fill="var(--sign)"/>
+            <text x="345" y="85" text-anchor="middle" font-size="19" font-weight="800" fill="#fff" letter-spacing="1.5">MIJOZ OMBORI</text>
+            <g fill="var(--glass)"><rect x="248" y="116" width="30" height="14" rx="2"/><rect x="292" y="116" width="30" height="14" rx="2"/><rect x="336" y="116" width="30" height="14" rx="2"/><rect x="380" y="116" width="30" height="14" rx="2"/></g>
+            <g fill="var(--bld2)"><rect x="248" y="150" width="74" height="80" rx="3"/><rect x="344" y="150" width="74" height="80" rx="3"/></g>
+            <g stroke="var(--dock)" stroke-width="2"><path d="M248 166h74M248 182h74M248 198h74M248 214h74M344 166h74M344 182h74M344 198h74M344 214h74"/></g>
+            <rect x="-6" y="186" width="8" height="26" rx="2" fill="var(--truck-frame)"/>
+          </svg>
+        </div>
+
+        <div class="road" id="road"></div>
+
+        <!-- Kran -->
+        <div class="crane" id="crane" aria-hidden="true">
+          <div class="beam" id="beam"></div>
+          <div class="trolley" id="trolley"></div>
+          <div class="cable" id="cable"></div>
+        </div>
+
+        <!-- Yuk mashinasi -->
+        <div class="truck" id="truck" aria-hidden="true">
+          <svg class="truck-back" viewBox="0 0 460 220">
+            <ellipse cx="236" cy="199" rx="214" ry="6" fill="rgba(0,0,0,.28)"/>
+            <rect x="0" y="150" width="310" height="14" rx="3" fill="var(--truck-frame)"/>
+            <rect x="0" y="108" width="9" height="42" rx="2" fill="var(--truck-body)"/>
+            <rect x="296" y="50" width="13" height="100" rx="3" fill="var(--truck-body)"/>
+            <rect x="308" y="164" width="72" height="22" rx="8" fill="var(--truck-frame)"/>
+            <path fill="var(--truck-cab)" d="M312 150V70Q312 58 324 58H388Q400 58 408 68L438 108Q444 116 444 126V150Z"/>
+            <path fill="var(--glass)" d="M328 72H384Q392 72 398 80L420 108H328Z"/>
+            <path fill="rgba(255,255,255,.18)" d="M328 72H356L342 108H328Z"/>
+            <rect x="312" y="124" width="132" height="8" fill="var(--accent)"/>
+            <text x="332" y="146" font-size="11" font-weight="800" fill="#fff" letter-spacing=".5">YO'LDOSH</text>
+            <rect x="436" y="128" width="14" height="22" rx="3" fill="var(--truck-frame)"/>
+            <rect x="440" y="118" width="9" height="7" rx="2" fill="#fde68a"/>
+            <rect x="300" y="40" width="5" height="26" rx="2" fill="var(--truck-frame)"/>
+          </svg>
+
+          <div class="cargo" id="cargo">
+            <div class="cargo-box c1"></div><div class="cargo-box c2"></div><div class="cargo-box c3"></div>
+            <div class="cargo-box c4"></div><div class="cargo-box c5"></div><div class="cargo-box c6"></div>
+          </div>
+
+          <svg class="truck-front" viewBox="0 0 460 220">
+            <rect x="0" y="132" width="300" height="20" rx="3" fill="var(--truck-body)"/>
+            <rect x="0" y="132" width="300" height="4" fill="rgba(255,255,255,.35)"/>
+            <g class="wheel"><circle cx="64" cy="172" r="26" fill="#0f172a"/><circle cx="64" cy="172" r="12" fill="#cbd5e1"/><g fill="#475569"><circle cx="64" cy="159" r="2.6"/><circle cx="77" cy="172" r="2.6"/><circle cx="64" cy="185" r="2.6"/><circle cx="51" cy="172" r="2.6"/></g></g>
+            <g class="wheel"><circle cx="138" cy="172" r="26" fill="#0f172a"/><circle cx="138" cy="172" r="12" fill="#cbd5e1"/><g fill="#475569"><circle cx="138" cy="159" r="2.6"/><circle cx="151" cy="172" r="2.6"/><circle cx="138" cy="185" r="2.6"/><circle cx="125" cy="172" r="2.6"/></g></g>
+            <g class="wheel"><circle cx="345" cy="172" r="26" fill="#0f172a"/><circle cx="345" cy="172" r="12" fill="#cbd5e1"/><g fill="#475569"><circle cx="345" cy="159" r="2.6"/><circle cx="358" cy="172" r="2.6"/><circle cx="345" cy="185" r="2.6"/><circle cx="332" cy="172" r="2.6"/></g></g>
+            <g class="wheel"><circle cx="412" cy="172" r="26" fill="#0f172a"/><circle cx="412" cy="172" r="12" fill="#cbd5e1"/><g fill="#475569"><circle cx="412" cy="159" r="2.6"/><circle cx="425" cy="172" r="2.6"/><circle cx="412" cy="185" r="2.6"/><circle cx="399" cy="172" r="2.6"/></g></g>
+          </svg>
+          <div class="smoke" id="smoke"><i></i><i></i><i></i></div>
+        </div>
+
+        <!-- HUD -->
+        <div class="hud">
+          <div class="container hud-top">
+            <div class="steps" id="steps">
+              <div class="step" data-i="0"><b>01</b><span>Yuk ortish</span></div>
+              <div class="step" data-i="1"><b>02</b><span>Yo'lda</span></div>
+              <div class="step" data-i="2"><b>03</b><span>Topshirish</span></div>
+            </div>
+          </div>
+          <div class="container hud-copy" id="hudCopy">
+            <div class="eyebrow" id="hudEye">1-qadam</div>
+            <h2 id="hudTitle">Yuk ortilmoqda</h2>
+            <p id="hudText"></p>
+            <div class="meter" id="hudMeter"></div>
+          </div>
+          <div class="scroll-cue" id="scrollCue"><span></span>Pastga suring</div>
+          <div class="container hud-bottom">
+            <div class="routebar">
+              <span class="rb-city">Toshkent</span>
+              <div class="rb-line"><i id="rbFill"></i><b id="rbDot"></b></div>
+              <span class="rb-city">Samarqand</span>
+            </div>
+          </div>
+          <div class="delivered" id="delivered"><svg class="ico"><use href="#i-check"/></svg>Yuk muvaffaqiyatli topshirildi</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="section-head">
+          <span class="eyebrow reveal">Afzalliklar</span>
+          <h2 class="reveal">Nega Yo'ldosh?</h2>
+          <p class="reveal">Telegram guruhlaridagi tartibsizlik o'rniga yagona, shaffof va xavfsiz muhit.</p>
+        </div>
+        <div class="grid-3">
+          <article class="feature reveal">
+            <span class="f-ico"><svg class="ico"><use href="#i-shield"/></svg></span>
+            <h3>Tekshirilgan haydovchilar</h3>
+            <p>Shaxsiy hujjat, haydovchilik guvohnomasi va texnik pasport tekshiruvidan o'tgan hamkorlar.</p>
+          </article>
+          <article class="feature reveal" style="--d:.1s">
+            <span class="f-ico"><svg class="ico"><use href="#i-wallet"/></svg></span>
+            <h3>Shaffof narx</h3>
+            <p>Bir nechta haydovchidan taklif oling. Yashirin to'lovlar yo'q, narxni o'zingiz tanlaysiz.</p>
+          </article>
+          <article class="feature reveal" style="--d:.2s">
+            <span class="f-ico"><svg class="ico"><use href="#i-star"/></svg></span>
+            <h3>Reyting va sharhlar</h3>
+            <p>Har bir safardan keyin o'zaro baho. Haqiqiy tajriba asosida ishonchli tanlov.</p>
+          </article>
+        </div>
+        <p class="center reveal"><a href="#/services" class="link" data-link="services">Barcha xizmatlar <svg class="ico"><use href="#i-arrow"/></svg></a></p>
+      </div>
+    </section>
+
+    <section class="cta">
+      <div class="container cta-in">
+        <div>
+          <h2 class="reveal">Birinchi buyurtmangizni bugun bering</h2>
+          <p class="reveal">Ro'yxatdan o'tish bir daqiqa oladi va butunlay bepul.</p>
+        </div>
+        <div class="cta-btns reveal">
+          <button class="btn btn-light btn-lg" data-open-auth="signup">Ro'yxatdan o'tish</button>
+          <button class="btn btn-ghost-light btn-lg" data-open-auth="signup" data-role="driver">Haydovchi bo'lish</button>
+        </div>
+      </div>
+    </section>
+  </section>
+
+  <!-- ================= XIZMATLAR ================= -->
+  <section class="page" data-page="services" data-title="Xizmatlar">
+    <div class="page-hero">
+      <div class="container">
+        <span class="eyebrow reveal">Xizmatlar</span>
+        <h1 class="reveal">Har qanday yuk va yo'lovchi uchun yechim</h1>
+        <p class="lead reveal">Shaxsiy buyurtmadan tortib korxonalar uchun doimiy yetkazib berishgacha.</p>
+      </div>
+    </div>
+
+    <section class="section">
+      <div class="container">
+        <div class="grid-3">
+          <article class="feature reveal"><span class="f-ico"><svg class="ico"><use href="#i-box"/></svg></span><h3>Yuk tashish</h3><p>Hujjat, maishiy texnika, mebel va kichik hamda o'rta hajmdagi yuklar uchun mos mashina topiladi.</p></article>
+          <article class="feature reveal" style="--d:.08s"><span class="f-ico"><svg class="ico"><use href="#i-users"/></svg></span><h3>Yo'lovchi tashish</h3><p>Shaharlararo qulay safar. O'rinni oldindan band qiling va haydovchi bilan bog'laning.</p></article>
+          <article class="feature reveal" style="--d:.16s"><span class="f-ico"><svg class="ico"><use href="#i-repeat"/></svg></span><h3>Qaytish yuki</h3><p>Haydovchi qaytishda bo'sh joyni e'lon qiladi, siz esa yukni qulay narxda yuborasiz.</p></article>
+          <article class="feature reveal"><span class="f-ico"><svg class="ico"><use href="#i-building"/></svg></span><h3>Korxonalar uchun</h3><p>Doimiy yetkazib berish, shartnoma asosida hamkorlik va oylik hisobotlar.</p></article>
+          <article class="feature reveal" style="--d:.08s"><span class="f-ico"><svg class="ico"><use href="#i-pin"/></svg></span><h3>Buyurtmani kuzatish</h3><p>Yuk ortildi, yo'lda, topshirildi. Barcha bosqichlar holati bir joyda.</p></article>
+          <article class="feature reveal" style="--d:.16s"><span class="f-ico"><svg class="ico"><use href="#i-headset"/></svg></span><h3>Yordam xizmati</h3><p>Savol yoki muammo yuzaga kelsa, jamoamiz buyurtma davomida yordam beradi.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section alt">
+      <div class="container">
+        <div class="section-head">
+          <span class="eyebrow reveal">Jarayon</span>
+          <h2 class="reveal">To'rt oddiy qadam</h2>
+        </div>
+        <ol class="timeline">
+          <li class="reveal"><b>01</b><h3>Buyurtma bering</h3><p>Qayerdan, qayerga, sana va yuk hajmi yoki yo'lovchi sonini kiriting.</p></li>
+          <li class="reveal" style="--d:.08s"><b>02</b><h3>Takliflar oling</h3><p>Yo'nalishdagi haydovchilar narx va shartlarini yuboradi.</p></li>
+          <li class="reveal" style="--d:.16s"><b>03</b><h3>Haydovchini tanlang</h3><p>Reyting, sharhlar va mashina turiga qarab qaror qiling.</p></li>
+          <li class="reveal" style="--d:.24s"><b>04</b><h3>Baho bering</h3><p>Safar yakunida tajribangizni baholab, boshqalarga yordam bering.</p></li>
+        </ol>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container narrow">
+        <div class="section-head">
+          <span class="eyebrow reveal">Narx qanday shakllanadi</span>
+          <h2 class="reveal">Uch asosiy omil</h2>
+        </div>
+        <div class="grid-3">
+          <div class="mini reveal"><b>Masofa</b><p>Yo'nalish uzunligi va yo'lda ketadigan vaqt.</p></div>
+          <div class="mini reveal" style="--d:.08s"><b>Hajm va og'irlik</b><p>Yuk o'lchami yoki band qilingan o'rinlar soni.</p></div>
+          <div class="mini reveal" style="--d:.16s"><b>Talab va mavsum</b><p>Bayram va mavsumiy faol kunlarda narx o'zgarishi mumkin.</p></div>
+        </div>
+      </div>
+    </section>
+  </section>
+
+  <!-- ================= YO'NALISHLAR ================= -->
+  <section class="page" data-page="routes" data-title="Yo'nalishlar">
+    <div class="page-hero">
+      <div class="container">
+        <span class="eyebrow reveal">Yo'nalishlar</span>
+        <h1 class="reveal">Mashhur yo'nalishlar va taxminiy narxlar</h1>
+        <p class="lead reveal">Yo'nalishni tanlang, buyurtma formasi avtomatik to'ldiriladi.</p>
+      </div>
+    </div>
+    <section class="section">
+      <div class="container">
+        <div class="toolbar reveal">
+          <input type="search" id="routeFilter" placeholder="Shahar bo'yicha qidirish, masalan: Samarqand" aria-label="Yo'nalishni qidirish" />
+        </div>
+        <div class="rtable reveal" id="routeTable"></div>
+        <p class="note reveal">Narxlar namunaviy va taxminiy. Aniq narx haydovchi taklifida ko'rsatiladi.</p>
+      </div>
+    </section>
+  </section>
+
+  <!-- ================= HAYDOVCHILAR ================= -->
+  <section class="page" data-page="drivers" data-title="Haydovchilar">
+    <div class="page-hero">
+      <div class="container split">
+        <div>
+          <span class="eyebrow reveal">Haydovchilar uchun</span>
+          <h1 class="reveal">Bo'sh yurmang, qo'shimcha daromad toping</h1>
+          <p class="lead reveal">Yo'nalishingizni e'lon qiling, mijozlar o'zlari topadi. Vositachisiz, shaffof shartlarda.</p>
+          <ul class="trust reveal">
+            <li><svg class="ico"><use href="#i-check"/></svg>Ro'yxatdan o'tish bepul</li>
+            <li><svg class="ico"><use href="#i-check"/></svg>Qaytish yo'lida qo'shimcha buyurtmalar</li>
+            <li><svg class="ico"><use href="#i-check"/></svg>Reytingingiz ko'proq mijoz olib keladi</li>
+          </ul>
+          <button class="btn btn-primary btn-lg reveal" data-open-auth="signup" data-role="driver">Haydovchi bo'lib qo'shilish</button>
+        </div>
+
+        <div class="card calc reveal">
+          <h3>Daromad kalkulyatori</h3>
+          <label for="calcTrips">Oyiga reyslar soni: <b id="calcTripsVal">12</b></label>
+          <input type="range" id="calcTrips" min="2" max="30" value="12" />
+          <label for="calcPrice">O'rtacha buyurtma narxi</label>
+          <select id="calcPrice">
+            <option value="150000">150 000 so'm</option>
+            <option value="300000" selected>300 000 so'm</option>
+            <option value="600000">600 000 so'm</option>
+            <option value="1200000">1 200 000 so'm</option>
+          </select>
+          <div class="calc-out">
+            <span>Taxminiy oylik tushum</span>
+            <b id="calcOut">0</b>
+          </div>
+          <p class="note">Namunaviy hisob-kitob. Real daromad yo'nalish va talabga bog'liq.</p>
+        </div>
+      </div>
+    </div>
+
+    <section class="section">
+      <div class="container">
+        <div class="section-head">
+          <span class="eyebrow reveal">Talablar</span>
+          <h2 class="reveal">Ro'yxatdan o'tish uchun kerak bo'ladi</h2>
+        </div>
+        <div class="grid-4">
+          <article class="feature reveal"><span class="f-ico"><svg class="ico"><use href="#i-id"/></svg></span><h3>Shaxsiy pasport</h3><p>Shaxsni tasdiqlash uchun.</p></article>
+          <article class="feature reveal" style="--d:.08s"><span class="f-ico"><svg class="ico"><use href="#i-doc"/></svg></span><h3>Haydovchilik guvohnomasi</h3><p>Amaldagi toifa bilan.</p></article>
+          <article class="feature reveal" style="--d:.16s"><span class="f-ico"><svg class="ico"><use href="#i-doc"/></svg></span><h3>Texnik pasport</h3><p>Mashina egaligi yoki ishonchnoma.</p></article>
+          <article class="feature reveal" style="--d:.24s"><span class="f-ico"><svg class="ico"><use href="#i-camera"/></svg></span><h3>Mashina rasmi</h3><p>Tashqi va yuk bo'limi suratlari.</p></article>
+        </div>
+      </div>
+    </section>
+  </section>
+
+  <!-- ================= BIZ HAQIMIZDA ================= -->
+  <section class="page" data-page="about" data-title="Biz haqimizda">
+    <div class="page-hero">
+      <div class="container">
+        <span class="eyebrow reveal">Biz haqimizda</span>
+        <h1 class="reveal">Shaharlararo tashishni ishonchli va oddiy qilamiz</h1>
+        <p class="lead reveal">Maqsadimiz, haydovchi va mijoz o'rtasidagi ishonchni texnologiya orqali mustahkamlash.</p>
+      </div>
+    </div>
+
+    <section class="section">
+      <div class="container">
+        <div class="grid-3">
+          <article class="feature reveal"><span class="f-ico"><svg class="ico"><use href="#i-shield"/></svg></span><h3>Ishonch</h3><p>Hujjat tekshiruvi, reyting va sharhlar orqali xavfsiz hamkorlik.</p></article>
+          <article class="feature reveal" style="--d:.08s"><span class="f-ico"><svg class="ico"><use href="#i-clock"/></svg></span><h3>Qulaylik</h3><p>Buyurtma berish va haydovchi topish bir necha daqiqada.</p></article>
+          <article class="feature reveal" style="--d:.16s"><span class="f-ico"><svg class="ico"><use href="#i-users"/></svg></span><h3>Hamjamiyat</h3><p>Haydovchilar va mijozlar uchun adolatli, ochiq muhit.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section alt">
+      <div class="container split">
+        <div>
+          <span class="eyebrow reveal">Aloqa</span>
+          <h2 class="reveal">Savolingiz bormi?</h2>
+          <p class="reveal">Xabar qoldiring, jamoamiz tez orada javob beradi.</p>
+          <ul class="contact reveal">
+            <li><svg class="ico"><use href="#i-phone"/></svg>+998 90 000 00 00</li>
+            <li><svg class="ico"><use href="#i-mail"/></svg>info@yoldosh.uz</li>
+            <li><svg class="ico"><use href="#i-pin"/></svg>Toshkent, O'zbekiston</li>
+          </ul>
+        </div>
+        <form class="card contact-form reveal" id="contactForm" novalidate>
+          <label>Ism<input type="text" name="name" placeholder="Ismingiz" required /></label>
+          <label>Telefon<input type="tel" name="phone" placeholder="+998 90 123 45 67" required /></label>
+          <label>Xabar<textarea name="msg" rows="4" placeholder="Savolingizni yozing" required></textarea></label>
+          <p class="form-msg" role="alert"></p>
+          <button class="btn btn-primary btn-lg" type="submit">Yuborish</button>
+        </form>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container narrow">
+        <div class="section-head">
+          <span class="eyebrow reveal">Savollar</span>
+          <h2 class="reveal">Tez-tez beriladigan savollar</h2>
+        </div>
+        <div class="faq">
+          <details class="reveal" open><summary>Platformadan foydalanish pullikmi?</summary><p>Mijozlar uchun ro'yxatdan o'tish va buyurtma berish bepul. Haydovchilar uchun shartlar ro'yxatdan o'tishda ko'rsatiladi.</p></details>
+          <details class="reveal"><summary>Haydovchilar qanday tekshiriladi?</summary><p>Har bir haydovchi shaxsiy va mashina hujjatlarini yuklaydi. Tekshiruvdan keyingina profil faollashadi.</p></details>
+          <details class="reveal"><summary>To'lov qanday amalga oshiriladi?</summary><p>Hozircha mijoz va haydovchi o'zaro kelishadi. Platforma ichidagi xavfsiz to'lov keyingi versiyada qo'shiladi.</p></details>
+          <details class="reveal"><summary>Yo'lovchi tashish ham bormi?</summary><p>Ha, yuk bilan bir qatorda yo'lovchi o'rinlarini ham band qilish mumkin.</p></details>
+        </div>
+      </div>
+    </section>
+  </section>
+</main>
+
+<footer class="footer">
+  <div class="container foot-grid">
+    <div>
+      <a href="#/home" class="logo" data-link="home"><span class="logo-mark"><svg class="ico"><use href="#i-truck"/></svg></span><span class="logo-text">Yo'ldosh</span></a>
+      <p>Shaharlararo yuk va yo'lovchi tashish platformasi.</p>
+    </div>
+    <div>
+      <h4>Sahifalar</h4>
+      <a href="#/services" data-link="services">Xizmatlar</a>
+      <a href="#/routes" data-link="routes">Yo'nalishlar</a>
+      <a href="#/drivers" data-link="drivers">Haydovchilar</a>
+      <a href="#/about" data-link="about">Biz haqimizda</a>
+    </div>
+    <div>
+      <h4>Aloqa</h4>
+      <a href="tel:+998900000000">+998 90 000 00 00</a>
+      <a href="mailto:info@yoldosh.uz">info@yoldosh.uz</a>
+    </div>
+  </div>
+  <div class="copy">© <span id="year"></span> Yo'ldosh. Barcha huquqlar himoyalangan.</div>
+</footer>
+
+<!-- SAHIFA ALMASHISH PARDASI -->
+<div class="curtain" id="curtain" aria-hidden="true">
+  <div class="c-inner">
+    <div class="c-truck"><svg class="ico"><use href="#i-truck"/></svg></div>
+    <div class="c-label" id="curtainLabel"></div>
+    <div class="c-road"></div>
+  </div>
+</div>
+
+<!-- LOGIN / SIGNUP -->
+<div class="modal" id="authModal" aria-hidden="true">
+  <div class="modal-backdrop" data-close-auth></div>
+  <div class="modal-box" role="dialog" aria-modal="true" aria-labelledby="authTitle">
+    <button class="modal-close" data-close-auth aria-label="Yopish">✕</button>
+    <div class="tabs">
+      <button class="tab active" data-tab="login" type="button">Kirish</button>
+      <button class="tab" data-tab="signup" type="button">Ro'yxatdan o'tish</button>
+    </div>
+    <h3 id="authTitle">Xush kelibsiz</h3>
+
+    <form class="auth-form" id="loginForm" novalidate>
+      <label>Telefon raqam
+        <input type="tel" name="phone" placeholder="+998 90 123 45 67" autocomplete="tel" required />
+      </label>
+      <label>Parol
+        <div class="pw">
+          <input type="password" name="password" placeholder="Parolingiz" autocomplete="current-password" required />
+          <button type="button" class="pw-toggle" aria-label="Parolni ko'rsatish">Ko'rsat</button>
+        </div>
+      </label>
+      <p class="form-msg" role="alert"></p>
+      <button class="btn btn-primary btn-lg" type="submit">Kirish</button>
+      <p class="switch">Akkauntingiz yo'qmi? <a href="#" data-tab-link="signup">Ro'yxatdan o'ting</a></p>
+    </form>
+
+    <form class="auth-form hidden" id="signupForm" novalidate>
+      <div class="role-pick">
+        <label><input type="radio" name="role" value="client" checked /><span><svg class="ico"><use href="#i-box"/></svg>Mijoz</span></label>
+        <label><input type="radio" name="role" value="driver" /><span><svg class="ico"><use href="#i-truck"/></svg>Haydovchi</span></label>
+      </div>
+      <label>Ism familiya
+        <input type="text" name="name" placeholder="Ismingiz" autocomplete="name" required />
+      </label>
+      <label>Telefon raqam
+        <input type="tel" name="phone" placeholder="+998 90 123 45 67" autocomplete="tel" required />
+      </label>
+      <label>Parol
+        <div class="pw">
+          <input type="password" name="password" placeholder="Kamida 6 ta belgi" autocomplete="new-password" required />
+          <button type="button" class="pw-toggle" aria-label="Parolni ko'rsatish">Ko'rsat</button>
+        </div>
+      </label>
+      <p class="form-msg" role="alert"></p>
+      <button class="btn btn-primary btn-lg" type="submit">Ro'yxatdan o'tish</button>
+      <p class="switch">Akkauntingiz bormi? <a href="#" data-tab-link="login">Kiring</a></p>
+    </form>
+  </div>
+</div>
+
+<div class="toast" id="toast" role="status"></div>
+
+<script src="script.js"></script>
+</body>
+</html>
